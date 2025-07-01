@@ -28,14 +28,27 @@ public class AuroraDsqlConstants {
     public static final int DEFAULT_PORT = 5432;
     public static final String DEFAULT_DATABASE = "postgres";
     
-    // Aurora DSQL specific properties
+    // Aurora DSQL specific SSL properties (required)
     public static final String PROP_SSL_MODE = "sslmode";
-    public static final String PROP_SSL_MODE_REQUIRE = "require";
+    public static final String PROP_SSL_MODE_VALUE = "verify-full";
+    public static final String PROP_SSL_FACTORY = "sslfactory";
+    public static final String PROP_SSL_FACTORY_VALUE = "org.postgresql.ssl.DefaultJavaSSLFactory";
+    public static final String PROP_SSL_NEGOTIATION = "sslNegotiation";
+    public static final String PROP_SSL_NEGOTIATION_VALUE = "direct";
     
     // AWS specific properties
     public static final String PROP_AWS_REGION = "aws.region";
     public static final String PROP_AWS_ACCESS_KEY = "aws.accessKeyId";
     public static final String PROP_AWS_SECRET_KEY = "aws.secretAccessKey";
     public static final String PROP_AWS_SESSION_TOKEN = "aws.sessionToken";
+    public static final String PROP_AWS_PROFILE = "aws.profile";
+    
+    // Aurora DSQL authentication
+    public static final String PROP_USE_AWS_AUTH = "useAwsAuth";
+    public static final String PROP_ADMIN_USER = "admin";
+    public static final String PROP_TOKEN_EXPIRATION = "tokenExpiration";
+    
+    // Default token expiration (15 minutes)
+    public static final int DEFAULT_TOKEN_EXPIRATION_SECONDS = 900;
     
 }

@@ -85,17 +85,20 @@
                     icon="icons/aurora_dsql_icon.png"
                     iconBig="icons/aurora_dsql_icon_big.png"
                     class="org.postgresql.Driver"
-                    sampleURL="jdbc:postgresql://{cluster-endpoint}:5432/{database}"
+                    sampleURL="jdbc:postgresql://{cluster-endpoint}.dsql.{region}.on.aws:5432/postgres"
                     defaultPort="5432"
                     webURL="https://docs.aws.amazon.com/aurora-dsql/"
                     propertiesURL="https://jdbc.postgresql.org/documentation/head/connect.html"
-                    description="Amazon Aurora DSQL JDBC driver">
+                    description="Amazon Aurora DSQL JDBC driver with AWS IAM authentication support">
 
                     <replace provider="postgresql" driver="postgres-jdbc"/>
 
                     <property name="loginTimeout" value="20"/>
                     <property name="connectTimeout" value="20000"/>
                     <property name="socketTimeout" value="30000"/>
+                    <property name="sslmode" value="verify-full"/>
+                    <property name="sslfactory" value="org.postgresql.ssl.DefaultJavaSSLFactory"/>
+                    <property name="sslNegotiation" value="direct"/>
 
                     <parameter name="query-get-active-db" value="select current_database()"/>
                     <parameter name="query-get-active-schema" value="select current_schema()"/>
@@ -113,6 +116,16 @@
                     <parameter name="shutdown-url-param" value="shutdown"/>
                 </driver>
             </drivers>
+            
+            <propertyGroup label="AWS Authentication">
+                <property id="useAwsAuth" label="Use AWS Authentication" type="boolean" description="Use AWS IAM authentication tokens" defaultValue="true"/>
+                <property id="aws.region" label="AWS Region" type="string" description="AWS region where the Aurora DSQL cluster is located" required="true"/>
+                <property id="aws.profile" label="AWS Profile" type="string" description="AWS credentials profile to use (optional)"/>
+                <property id="aws.accessKeyId" label="AWS Access Key ID" type="string" description="AWS access key ID (optional if using profile or IAM role)"/>
+                <property id="aws.secretAccessKey" label="AWS Secret Access Key" type="password" description="AWS secret access key (optional if using profile or IAM role)"/>
+                <property id="aws.sessionToken" label="AWS Session Token" type="password" description="AWS session token for temporary credentials (optional)"/>
+            </propertyGroup>
+            
         </datasource>
     </extension>
 
