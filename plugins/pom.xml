@@ -67,6 +67,7 @@
         <module>org.jkiss.dbeaver.ext.phoenix</module>
 
         <module>org.jkiss.dbeaver.ext.postgresql</module>
+        <module>org.jkiss.dbeaver.ext.aurora.dsql</module>
 
         <module>org.jkiss.dbeaver.ext.snowflake</module>
         <module>org.jkiss.dbeaver.ext.spanner</module>
